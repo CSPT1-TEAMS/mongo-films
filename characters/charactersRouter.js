@@ -8,12 +8,15 @@ const router = express.Router();
 router.get('/', (req, res) => {
   let { minheight, gender } = req.query;
   // console.log(req.query);
-  query = Character.find()
+  let query = Character.find()
+    .select('name gender height skin_color hair_color eye_color');
+
   if (minheight) {
-    query = query.where('height').gt(minheight);
+    const heightFilter = new RegExp(minheight, 'i');
+    query.where({ minheight: heightFilter });
   }
   if (gender) {
-    query = query.where({ gender });
+    const genderFilter = new RegExp(gender, 'i');
   }
   query.then(characters => {
     res.status(200).json(characters);
