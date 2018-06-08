@@ -1,7 +1,7 @@
 const express = require('express');
 
 const Character = require('./Character.js');
-
+const Vehicles = require('../vehicles/Vehicle.js');
 const router = express.Router();
 
 // add endpoints here
@@ -20,7 +20,10 @@ router.get('/:id', (req, res) => {
       .catch(err => res.status(500).json(err))
 })
 
-router.get('/:id/vehicle', (req, res) => {
-  
+router.get('/:id/vehicles', (req, res) => {
+  Vehicles.find()
+    .select('vehicle_class')
+    .then( vehicles => res.status(200).json({ vehicles: vehicles }))
+    .catch( err => res.status(500).json(err));
 })
 module.exports = router;
