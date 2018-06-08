@@ -6,10 +6,17 @@ const router = express.Router();
 
 // add endpoints here
 router.get('/', (req, res) => {
-    Character.find()
-      .select('name gender height skin_color hair_color eye_color')
-      .then( chars => res.status(200).json({chars: chars}))
-      .catch( err => res.status(500).json(err))
+  let { minheight, gender } = req.query;
+  console.log(req.query);
+  query = Character.find()
+  if (minheight) query = query.where('height').gt(minheight);
+  if (gender) query = query.where({ gender });
+  query.then(characters => {
+    res.status(200).json(characters);
+  })
+  .catch( error => {
+    res.status(500).json({error: "Error retrieving from database."});
+  })
 })
 
 router.get('/:id', (req, res) => {
