@@ -8,8 +8,23 @@ const router = express.Router();
 // add endpoints here
 
 router.get("/", (req, res) => {
-    Character.find()
-    .then(characters => res.status(200).json(characters))
+    let { minheight, gender } = req.query
+    query = Character.find()
+    if (minheight !== undefined) {
+        query = query.where('height').gt(minheight)
+    }
+    if (gender !== undefined) {
+        query = query.where({ gender })
+    }
+
+    query.then(characters => {
+        res.status(200).json(characters)
+    })
+    .catch(error => {
+        res.status(500).json(
+            { errorMessage: "Something went wrong. Please try again later." }
+        )
+    })
 })
 
 router.get("/:id", (req, res) => {
