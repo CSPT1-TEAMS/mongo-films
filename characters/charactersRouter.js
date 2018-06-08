@@ -19,4 +19,8 @@ router.get('/:id', (req, res) => {
       .then(char => res.status(200).json(char))
       .catch(err => res.status(500).json(err))
 })
+
+router.get('/:id/vehicle', (req, res) => {
+  
+})
 module.exports = router;

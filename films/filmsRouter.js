@@ -15,6 +15,8 @@ router.get('/', (req, res) => {
         .select('episode title producer released_date')
     // .populate('planets', 'name climate terrain gravity diameter -_id')
     // .populate('characters', 'name')
+
+    // if there is a query string called producer
     if (producer) {
         // javascript regular expression
         const filter = new RegExp(producer, 'i')
@@ -26,7 +28,7 @@ router.get('/', (req, res) => {
         query.where({ release_date: { $regex: released, $options: 'i' } })
     }
     */
-    
+    // if there is a query string called released    
     if (released) {
         const releasedFilter = new RegExp(released, 'i')
         query.where({ release_date: releasedFilter })
