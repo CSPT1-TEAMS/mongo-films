@@ -8,9 +8,10 @@ const router = express.Router();
 // so here we go
 
 router.get('/', (req, res) => {
+    // created two variables on one line using object destructuring
     const { producer, released } = req.query;
     let query = Film.find()
-        .sort('-episode')
+        .sort('episode')
         .select('episode title producer released_date')
     // .populate('planets', 'name climate terrain gravity diameter -_id')
     // .populate('characters', 'name')

@@ -7,6 +7,7 @@ const router = express.Router();
 // add endpoints here
 router.get('/', (req, res) => {
     Character.find()
+      .select('name gender height skin_color hair_color eye_color')
       .then( chars => res.status(200).json({chars: chars}))
       .catch( err => res.status(500).json(err))
 })
