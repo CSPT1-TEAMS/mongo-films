@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const { id } = req.params;
     Character.findById(id)
+      // this is what populates character info with home planet info
       .populate('homeworld', 'name climate')
       .then(char => res.status(200).json(char))
       .catch(err => res.status(500).json(err))
