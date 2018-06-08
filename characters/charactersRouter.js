@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
   }
   if (gender) {
     const genderFilter = new RegExp(gender, 'i');
+    query.where('height').gt(minheight);
   }
   query.then(characters => {
     res.status(200).json(characters);
