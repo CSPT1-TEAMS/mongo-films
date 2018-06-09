@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     .select('name gender height skin_color hair_color eye_color');
 
   if (minheight) {
-    query.where(parseInt('height')).gt(minheight);
+    query.where('height').gt(minheight);
   }
   if (gender) {
     const genderFilter = new RegExp(gender, 'i');
