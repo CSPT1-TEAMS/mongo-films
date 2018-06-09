@@ -12,12 +12,11 @@ router.get('/', (req, res) => {
     .select('name gender height skin_color hair_color eye_color');
 
   if (minheight) {
-    const heightFilter = new RegExp(minheight, 'i');
-    query.where({ minheight: heightFilter });
+    query.where('height').gt(parseInt(minheight));
   }
   if (gender) {
     const genderFilter = new RegExp(gender, 'i');
-    query.where('height').gt(minheight);
+    query.where({ gender: genderFilter });
   }
   query.then(characters => {
     res.status(200).json(characters);
