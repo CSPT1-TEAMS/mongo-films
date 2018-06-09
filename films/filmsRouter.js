@@ -1,8 +1,8 @@
 const express = require('express')
+const router = express.Router()
 
 const Film = require('./Film.js')
 
-const router = express.Router()
 
 // add endpoints here
 // ☞ c73e5146-e6db-481d-af2a-4f4d0b266e54
