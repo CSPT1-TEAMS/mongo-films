@@ -1,4 +1,4 @@
-{
+ {
   "name": "mongo-films",
   "version": "1.0.0",
   "description": "MongoDB Films Project",
@@ -10,7 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/LambdaSchool/mongo-films.git"
   },
-  "keywords": ["mongo"],
+  "keywords": [
+    "mongo"
+  ],
   "author": "Lambda School",
   "license": "ISC",
   "bugs": {
